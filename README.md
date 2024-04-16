@@ -3,7 +3,7 @@
 
 ## Overview
 
-Currency Exchange Dashboard is a Flask-based web application that provides real-time and historical currency exchange rates. Utilizing the Open Exchange Rates API, the application offers interactive visualizations with Plotly, catering to users interested in tracking currency market trends.
+A Flask-based web application that provides real-time and historical currency exchange rates. Utilizing the Open Exchange Rates API, the application offers interactive visualizations with Plotly, catering to users interested in tracking currency market trends.
 
 ## Features
 
@@ -22,17 +22,22 @@ Currency Exchange Dashboard is a Flask-based web application that provides real-
 ### Setup Instructions
 
 1. **Clone the repository**
-git clone https://github.com/KhaledHussein1 currency-exchange-dashboard.git
-cd CurrencyDashboard
+
+git clone [https://github.com/KhaledHussein1 currency-exchange-dashboard.git](https://github.com/KhaledHussein1/currency-exchange-dashboard)
 
 2. **Create and activate a virtual environment**
+
 python -m venv venv
-source venv/bin/activate # On Windows use `venv\Scripts\activate`
+
+source venv/bin/activate 
+or `venv\Scripts\activate` in Windows
 
 3. **Install dependencies**
+
 pip install -r requirements.txt
 
 4. **Environment Variables**
+
 Replace `ENTER_KEY_HERE` (in routes.py) with the actual API key from [Open Exchange Rates](https://openexchangerates.org/). This key is necessary to fetch the currency data.
 
 ### Running the Application
