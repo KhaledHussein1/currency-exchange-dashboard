@@ -1,0 +1,70 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Container for all content */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: #430000;
+    color: #ffffff;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.chart-container {
+    background: #ffffff;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type="date"],
+button {
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background: #203354;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #6D0000;
+}
+
+.currency-list ul {
+    display: none; /* Hide the list initially */
+    list-style-type: none; /* Remove bullet points */
+    padding: 0;
+}
+
+.currency-list input, .currency-list button {
+    margin: 10px 0;
+}

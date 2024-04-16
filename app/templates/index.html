@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <style>
+                header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: start;
+                }
+                .title {
+                    flex-grow: 1; /* Takes up the remaining space */
+                    display: flex;
+                    flex-direction: column; 
+                    justify-content: center; /* Center horizontally */
+                    align-items: center; /* Center vertically */
+                }
+            </style>
+            <div class="title">
+                <h1>Currency Exchange Rates</h1>
+                <h4>Base Currency: USD</h4>
+            </div>
+        </header>
+        
+        <section class="chart-container">
+            <div id="plot"></div>
+        </section>
+
+        <section>
+            <form id="dateForm">
+                <label for="dateInput">Select Date: </label>
+                <input type="date" id="dateInput">
+                <button type="button" id="submitButton">Get Historical Rates</button>
+            </form>
+        </section>
+
+        <section class="currency-list">
+            <h2>Currency List</h2>
+            <button onclick="toggleCurrencyList()">Show/Hide Currencies</button>
+            <input type="text" id="searchBox" onkeyup="filterCurrencies()" placeholder="Search for currencies...">
+            <ul id="currencyList">
+                {% for code, name in currency.items() %}
+                    <li>{{ code }}: {{ name }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <footer>
+            <!-- Complete Later -->
+        </footer>
+    </div>
+
+    <script>
+        {% if plot_div %}
+            var plotData = {{ plot_div|safe }};
+            Plotly.newPlot('plot', plotData.data, plotData.layout, {responsive: true});
+        {% endif %}
+    </script>
+
+    <script src="../static/currency-scripts.js"></script>
+</body>
+</html>
