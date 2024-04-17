@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Currency Dashboard</title>
     <link rel="stylesheet" href="/static/style.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -33,7 +33,7 @@
             <div id="plot"></div>
         </section>
 
-        <section>
+        <section class="form-container">
             <form id="dateForm">
                 <label for="dateInput">Select Date: </label>
                 <input type="date" id="dateInput">
@@ -42,6 +42,7 @@
         </section>
 
         <section class="currency-list">
+            <section class="form-container">
             <h2>Currency List</h2>
             <button onclick="toggleCurrencyList()">Show/Hide Currencies</button>
             <input type="text" id="searchBox" onkeyup="filterCurrencies()" placeholder="Search for currencies...">
@@ -50,6 +51,7 @@
                     <li>{{ code }}: {{ name }}</li>
                 {% endfor %}
             </ul>
+        </section>
         </section>
 
         <footer>
