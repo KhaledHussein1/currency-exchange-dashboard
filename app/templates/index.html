@@ -3,69 +3,116 @@
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Currency Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+        }
+        .title {
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+        .chart-container, .form-container, .currency-list {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-container {
+            margin-top: 50px;
+        }
+        #searchBox {
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        #currencyList {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #343a40;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <style>
-                header {
-                    display: flex;
-                    align-items: center;
-                    justify-content: start;
-                }
-                .title {
-                    flex-grow: 1; /* Takes up the remaining space */
-                    display: flex;
-                    flex-direction: column; 
-                    justify-content: center; /* Center horizontally */
-                    align-items: center; /* Center vertically */
-                }
-            </style>
+    <div class="container-fluid">
+        <header class="text-center" data-aos="fade-down" data-aos-duration="1500">
             <div class="title">
-                <h1>Currency Exchange Rates</h1>
-                <h4>Base Currency: USD</h4>
+                <h1 class="animate__animated animate__fadeInDown">Currency Exchange Rates</h1>
+                <h4 class="text-muted">Base Currency: USD</h4>
             </div>
         </header>
         
-        <section class="chart-container">
-            <div id="plot"></div>
+        <section class="chart-container my-5" data-aos="fade-up" data-aos-delay="500">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div id="plot"></div>
+                </div>
+            </div>
         </section>
 
-        <section class="form-container">
-            <form id="dateForm">
-                <label for="dateInput">Select Date: </label>
-                <input type="date" id="dateInput">
-                <button type="button" id="submitButton">Get Historical Rates</button>
+        <section class="form-container my-5" data-aos="zoom-in" data-aos-delay="800">
+            <form id="dateForm" class="form-inline justify-content-center">
+                <label for="dateInput" class="mr-2">Select Date: </label>
+                <input type="date" id="dateInput" class="form-control mr-2 animate__animated animate__fadeIn">
+                <button type="button" id="submitButton" class="btn btn-primary animate__animated animate__pulse animate__infinite">Get Historical Rates</button>
             </form>
         </section>
 
-        <section class="currency-list">
-            <section class="form-container">
-            <h2>Currency List</h2>
-            <button onclick="toggleCurrencyList()">Show/Hide Currencies</button>
-            <input type="text" id="searchBox" onkeyup="filterCurrencies()" placeholder="Search for currencies...">
-            <ul id="currencyList">
-                {% for code, name in currency.items() %}
-                    <li>{{ code }}: {{ name }}</li>
-                {% endfor %}
-            </ul>
-        </section>
+        <section class="currency-list my-5" data-aos="fade-right" data-aos-delay="1100">
+            <div class="text-center">
+                <h2>Currency List</h2>
+                <button onclick="toggleCurrencyList()" class="btn btn-secondary animate__animated animate__jello">Show/Hide Currencies</button>
+        
+                <ul id="currencyList" class="list-group mt-3">
+                    {% for code, name in currency.items() %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">{{ code }}: {{ name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </section>
 
-        <footer>
-            <!-- Complete Later -->
+        <footer class="text-center" data-aos="fade-up" data-aos-delay="1400">
+            <p>© 2024 Currency Dashboard. All rights reserved.</p>
         </footer>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../static/currency-scripts.js"></script>
     <script>
+        AOS.init({
+            duration: 1000, // Animation duration
+            easing: 'ease-in-out-sine', // Animation easing function
+            anchorPlacement: 'top-bottom', // Animates items as they come into view
+            once: true, // Only animate elements once
+        });
+
+        // Toggle currency list visibility
+        function toggleCurrencyList() {
+            var x = document.getElementById('currencyList');
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
         {% if plot_div %}
             var plotData = {{ plot_div|safe }};
             Plotly.newPlot('plot', plotData.data, plotData.layout, {responsive: true});
         {% endif %}
     </script>
-
-    <script src="../static/currency-scripts.js"></script>
 </body>
 </html>
