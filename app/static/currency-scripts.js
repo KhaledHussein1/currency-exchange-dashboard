@@ -25,22 +25,6 @@ function toggleCurrencyList() {
     }
 }
 
-// Function to filter the currency list based on input
-function filterCurrencies() {
-    var input = document.getElementById('searchBox');
-    var filter = input.value.toUpperCase();
-    var ul = document.getElementById('currencyList');
-    var li = ul.getElementsByTagName('li');
-
-    for (var i = 0; i < li.length; i++) {
-        var txtValue = li[i].textContent.toUpperCase() || li[i].innerText.toUpperCase();
-        if (txtValue.startsWith(filter)) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
 
 // Initialize the plot after the document is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
