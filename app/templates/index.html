@@ -9,14 +9,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch/dist/journal/bootstrap.min.css">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f4f7f6;
         }
-        .title {
-            margin-top: 50px;
-            margin-bottom: 30px;
+        .hero-section {
+            background: linear-gradient(to right, #4b79a1, #283e51);
+            color: white;
+            padding: 50px 0;
+            border-radius: 0 0 20px 20px;
+        }
+        .hero-title {
+            font-size: 3em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-title i {
+            margin-right: 15px;
+            color: #ffd700;
         }
         .chart-container, .form-container, .currency-list {
             background-color: white;
@@ -27,14 +42,13 @@
         .form-container {
             margin-top: 50px;
         }
-        #searchBox {
-            max-width: 300px;
-            margin: 20px auto;
-        }
         #currencyList {
             max-height: 300px;
             overflow-y: auto;
             margin-top: 20px;
+        }
+        #currencyList .list-group-item {
+            color: black;
         }
         footer {
             margin-top: 50px;
@@ -44,11 +58,14 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container-fluid">
-        <header class="text-center" data-aos="fade-down" data-aos-duration="1500">
+        <header class="hero-section text-center" data-aos="fade-down" data-aos-duration="1500">
             <div class="title">
-                <h1 class="animate__animated animate__fadeInDown">Currency Exchange Rates</h1>
+                <h1 class="hero-title animate__animated animate__fadeInDown">
+                    <i class="fas fa-chart-line"></i> Currency Exchange Rates
+                </h1>
                 <h4 class="text-muted">Base Currency: USD</h4>
             </div>
         </header>
@@ -72,7 +89,7 @@
         <section class="currency-list my-5" data-aos="fade-right" data-aos-delay="1100">
             <div class="text-center">
                 <h2>Currency List</h2>
-                <button onclick="toggleCurrencyList()" class="btn btn-secondary animate__animated animate__jello">Show/Hide Currencies</button>
+                <button onclick="toggleCurrencyList()" class="btn btn-info animate__animated animate__jello">Show/Hide Currencies</button>
         
                 <ul id="currencyList" class="list-group mt-3">
                     {% for code, name in currency.items() %}

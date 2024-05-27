@@ -7,7 +7,7 @@ import json
 main = Blueprint('main', __name__)
 
 # Obtain a key from https://openexchangerates.org/
-
+API_KEY = ''
 
 @main.route('/')
 def index():
