@@ -16,36 +16,6 @@ def index():
 
     return render_template('index.html', currency=data)
 
-'''
-@main.route('/current-rate/')
-def index():
-    response = requests.get(f'https://openexchangerates.org/api/latest.json?app_id={API_KEY}')
-    data = response.json()['rates']
-
-    # Create a Plotly figure
-    fig = px.line(
-        x=list(data.keys()), 
-        y=list(data.values()), 
-        title=f"Current Exchange Rates",
-        labels={'x': 'Currency', 'y': 'Exchange Rate'}
-    )
-
-    # Update the layout to center the title
-    fig.update_layout(
-        title={
-            'text': f"Current Exchange Rates",
-            'y': 0.9,
-            'x': 0.5,
-            'xanchor': 'center',
-            'yanchor': 'top'
-        },
-    )
-
-    # Convert the figure to JSON for JavaScript consumption in the HTML
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return render_template('index.html', plot_div=graphJSON)
-'''
 
 @main.route('/historical/<date>')
 def historical(date):
